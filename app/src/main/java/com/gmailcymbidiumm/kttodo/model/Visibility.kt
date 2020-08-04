@@ -9,8 +9,8 @@ data class SetVisibility(val visibility: Visibility) : Action()
 data class RemoveTodo(val id: Long) : Action()
 
 sealed class Visibility {
-    class All : Visibility()
-    class Active : Visibility()
-    class Completed : Visibility()
+    object All : Visibility()
+    object Active : Visibility()
+    object Completed : Visibility()
 }
 

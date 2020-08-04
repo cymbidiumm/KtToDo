@@ -9,7 +9,7 @@ import com.gmailcymbidiumm.kttodo.model.*
 class TodoStore: Store<TodoModel>, ViewModel() {
     private val state: MutableLiveData<TodoModel> = MutableLiveData()
 
-    private val initState = TodoModel(listOf(), Visibility.All())
+    private val initState = TodoModel(listOf(), Visibility.All)
 
     override fun dispatch(action: Action) {
         state.value = reduce(state.value, action)
@@ -27,7 +27,7 @@ class TodoStore: Store<TodoModel>, ViewModel() {
             is ToggleTodo -> newState.copy(
                 todos = newState.todos.map {
                     if(it.id == action.id){
-                        it.copy(status = !it.status)
+                        it.copy(isChecked = !it.isChecked)
                     } else it
                 } as MutableList<Todo>
             )
@@ -43,6 +43,6 @@ class TodoStore: Store<TodoModel>, ViewModel() {
     }
 
     override fun subscribe(renderer: Renderer<TodoModel>, func: Function<TodoModel, TodoModel>) {
-        renderer.render(Transformations.map(state, func))
+        renderer.render(Transformations.map(state,func))
     }
 }
